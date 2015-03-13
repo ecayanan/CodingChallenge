@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
 
@@ -15,8 +16,8 @@ public class PopulationStatistics {
 	private ArrayList<Map.Entry<String, Integer>> stateStatsList;
 	private ArrayList<Map.Entry<String,Integer>> stateStatsPopList;
 	private ArrayList<Map.Entry<String, Float>> statePercentList;
-	private Hashtable<String,Integer> statesTable;
-	private Hashtable<String,Integer> statesPopTable;
+	private HashMap<String,Integer> statesTable;
+	private HashMap<String,Integer> statesPopTable;
 	public static final int MINIMUM_POPULATION = 50000;
 
 	/**
@@ -36,8 +37,8 @@ public class PopulationStatistics {
 		String csvSplitBy = ",";
 		growthStatsList = new ArrayList<CityStatistics>();
 		//stateStatsList = new ArrayList<StateStatistics>();
-		statesTable = new Hashtable<String,Integer>();
-		statesPopTable = new Hashtable<String,Integer>();
+		statesTable = new HashMap<String,Integer>();
+		statesPopTable = new HashMap<String,Integer>();
 		try{
 			
 			br = new BufferedReader(new FileReader(csvFile));
@@ -130,13 +131,21 @@ public class PopulationStatistics {
 			}
 		} catch (FileNotFoundException e)
 		{
-			
+			e.printStackTrace();
 		} catch (IOException e)
 		{
-			
+			e.printStackTrace();
 		} finally
 		{
-			
+			//close buffered reader
+			if(br != null)
+			{
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 
