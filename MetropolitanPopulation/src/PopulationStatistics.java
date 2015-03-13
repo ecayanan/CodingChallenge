@@ -151,76 +151,9 @@ public class PopulationStatistics {
 
 } //end of populationstatistics
 
-class StateStatistics
-{
-	private String stateName;
-	private int pop1;
-	private int pop3;
-	
-	public StateStatistics(String name)
-	{
-		stateName = name;
-		pop1 = 0;
-		pop3 = 0;
-	}
-	
-	public void addPopulation(int one, int three)
-	{
-		pop1 += one;
-		pop3 += three;
-	}
-	
-	public int getPopulation1()
-	{
-		return pop1;
-	}
-	
-	public int getPopulation3()
-	{
-		return pop3;
-	}
-	
-	public float getPercentChange()
-	{
-		float percentage;
-		
-		percentage = (float)(pop3 - pop1)/pop1;
-		//System.out.println("StateName: " + stateName +" pop3: " + pop3 + "pop1: " + pop1);
-		return percentage*100;
-	}
-	
-	public String getName()
-	{
-		return stateName;
-	}
-	
-	@Override
-	public boolean equals(Object o)
-	{
-		if(o == this){
-			return true;
-		}
-	   if (!(o instanceof StateStatistics)) {
-            return false;
-        }
-	   
-	   StateStatistics  temp = (StateStatistics)o;
-	   return (this.getName() == temp.getName());
-	   
-	}
-}//end of StateStatistics
-class StateComparator implements Comparator<StateStatistics>
-{
 
-	@Override
-	public int compare(StateStatistics i, StateStatistics j)
-	{	
-		if(i.getPercentChange() > j.getPercentChange()) return -1;
-		if(i.getPercentChange() < j.getPercentChange()) return 1;
-		return 0;
-	}
+
 	
-}//end of StateComparator
 
 class CityStatistics
 {
